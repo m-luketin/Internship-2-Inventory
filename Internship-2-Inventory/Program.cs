@@ -12,49 +12,40 @@ namespace Internship_2_Inventory
             var cellphones = new List<Cellphone>();
             var vehicles = new List<Vehicle>();
             
-            var computer1 = new Computer("a quality pc", new DateTime(2018, 7, 13), 6, 4439.91, "Dell", false, "Windows", false );
-            computers.Add(computer1);
-            var computer2 = new Computer("a low-quality laptop", new DateTime(2017, 3, 9), 3, 2199.99, "Asus", true, "Linux", true);
-            computers.Add(computer2);
-            var computer3 = new Computer("an average pc", new DateTime(2016, 2, 23), 4, 3179.95, "Acer", false, "Linux", false);
-            computers.Add(computer3);
-            var cellphone1 = new Cellphone("an average cellphone", new DateTime(2018, 3, 4), 5, 2200.11, "Xiaomi", true, 0976086801, "Mark", "Jones");
-            cellphones.Add(cellphone1);
-            var cellphone2 = new Cellphone("a premium cellphone", new DateTime(2018, 11, 23), 12, 2200.11, "Apple", true, 0912221122, "John", "Evans");
-            cellphones.Add(cellphone2);
-            var vehicle1 = new Vehicle("a reliable car", new DateTime(2011, 3, 29), 36,  47000.99, "Volvo", new DateTime(2019, 3, 14), 230000 );
-            vehicles.Add(vehicle1);
-            var vehicle2 = new Vehicle("a barely drivable car", new DateTime(2002, 3, 20), 0,  8300.95, "Seat", new DateTime(2018, 12, 14), 999000 );
-            vehicles.Add(vehicle2);
-            var vehicle3 = new Vehicle("a transport van", new DateTime(2009, 8, 23), 24,  33034.25, "Volkswagen", new DateTime(2019, 8, 24), 250000 );
-            vehicles.Add(vehicle3);
-            var vehicle4 = new Vehicle("a premium car", new DateTime(2018, 11, 2), 60,  530345.99, "BMW", new DateTime(2020, 12, 30), 20000 );
-            vehicles.Add(vehicle4);
+            computers.Add(new Computer("a quality pc", new DateTime(2018, 7, 13), 6, 4439.91, "Dell", false, "Windows", false));
+            computers.Add(new Computer("a low-quality laptop", new DateTime(2017, 3, 9), 3, 2199.99, "Asus", true, "Linux", true));
+            computers.Add(new Computer("an average pc", new DateTime(2016, 2, 23), 1, 3179.95, "Acer", false, "Linux", false));
+            cellphones.Add(new Cellphone("an average cellphone", new DateTime(2018, 3, 4), 5, 2200.11, "Xiaomi", true, 0976086801, "Mark", "Jones"));
+            cellphones.Add(new Cellphone("a premium cellphone", new DateTime(2018, 11, 23), 12, 2200.11, "Apple", true, 0912221122, "John", "Evans"));
+            vehicles.Add(new Vehicle("a reliable car", new DateTime(2011, 3, 29), 36, 47000.99, "Volvo", new DateTime(2019, 3, 14), 230000));
+            vehicles.Add(new Vehicle("a barely drivable car", new DateTime(2002, 3, 20), 0, 8300.95, "Seat", new DateTime(2018, 12, 14), 999000));
+            vehicles.Add(new Vehicle("a transport van", new DateTime(2009, 8, 23), 24, 33034.25, "Volkswagen", new DateTime(2019, 8, 24), 250000));
+            vehicles.Add(new Vehicle("a premium car", new DateTime(2018, 11, 2), 60, 530345.99, "BMW", new DateTime(2020, 12, 30), 20000));
 
             var choice = 0;
             do
             {
-                Console.WriteLine("---------------------------Data_management-----------------------------");
-                Console.WriteLine("1)   Add computer");
-                Console.WriteLine("2)   Add cellphone");
-                Console.WriteLine("3)   Add vehicle");
-                Console.WriteLine("4)   Remove computer");
-                Console.WriteLine("5)   Remove cellphone");
-                Console.WriteLine("6)   Remove vehicle");
-                Console.WriteLine("------------------------------Searches---------------------------------");
-                Console.WriteLine("7)   Search item using serial number");
-                Console.WriteLine("8)   Search computers using expiring warranties");
-                Console.WriteLine("9)   Search phones using manufacturer");
-                Console.WriteLine("10)  Search computers using operating system");
-                Console.WriteLine("11)  Search owners and numbers of phones using warranty expiration");
-                Console.WriteLine("-------------------------------Print-----------------------------------");
-                Console.WriteLine("12)  Print computers");
-                Console.WriteLine("13)  Print cellphones");
-                Console.WriteLine("14)  Print vehicles");
-                Console.WriteLine("15)  Print tech with batteries");
-                Console.WriteLine("16)  Print vehicles with expiring registrations");
-                Console.WriteLine("-------------------------------Other-----------------------------------");
-                Console.WriteLine("17)  Exit");
+                Console.WriteLine(" ___________________________Data_management_____________________________");
+                Console.WriteLine("|1)   Add computer                                                      |");
+                Console.WriteLine("|2)   Add cellphone                                                     |");
+                Console.WriteLine("|3)   Add vehicle                                                       |");
+                Console.WriteLine("|4)   Remove computer                                                   |");
+                Console.WriteLine("|5)   Remove cellphone                                                  |");
+                Console.WriteLine("|6)   Remove vehicle                                                    |");
+                Console.WriteLine("|______________________________Searches_________________________________|");
+                Console.WriteLine("|7)   Search item using serial number                                   |");
+                Console.WriteLine("|8)   Search computers using expiring warranties                        |");
+                Console.WriteLine("|9)   Search phones using manufacturer                                  |");
+                Console.WriteLine("|10)  Search computers using operating system                           |");
+                Console.WriteLine("|11)  Search owners and numbers of phones using warranty expiration     |");
+                Console.WriteLine("|_______________________________Print___________________________________|");
+                Console.WriteLine("|12)  Print computers                                                   |");
+                Console.WriteLine("|13)  Print cellphones                                                  |");
+                Console.WriteLine("|14)  Print vehicles                                                    |");
+                Console.WriteLine("|15)  Print tech with batteries                                         |");
+                Console.WriteLine("|16)  Print vehicles with expiring registrations                        |");
+                Console.WriteLine("|_______________________________________________________________________|");
+                Console.WriteLine("|17)__Exit______________________________________________________________|");
 
                 choice = int.Parse(Console.ReadLine());
 
@@ -70,8 +61,11 @@ namespace Internship_2_Inventory
                     DeleteCellphone(cellphones);
                 else if(choice == 6)
                     DeleteVehicle(vehicles);
-
-                else if(choice < 1 || choice > 17)
+                else if(choice == 7)
+                    SearchUsingSerial(computers, cellphones, vehicles);
+                else if (choice == 8)
+                    SearchExpiringComputers(computers);
+                else
                     Console.WriteLine("Error!");
 
             } while (choice != 17);
@@ -269,6 +263,29 @@ namespace Internship_2_Inventory
                 Console.WriteLine("Serial not found");
             else
                 Console.WriteLine("Deleted.");
+        }
+
+        static void SearchUsingSerial(List<Computer> computers, List<Cellphone> cellphones, List<Vehicle> vehicles)
+        {
+            Console.WriteLine("Enter part of serial for search:");
+            var serial = Console.ReadLine();
+
+            foreach (var item in computers)
+                if (item.SerialNumber.ToString().Contains(serial))
+                    item.Print();
+            foreach (var item in cellphones)
+                if (item.SerialNumber.ToString().Contains(serial))
+                    item.Print();
+            foreach (var item in vehicles)
+                if (item.SerialNumber.ToString().Contains(serial))
+                    item.Print();
+        }
+
+        static void SearchExpiringComputers(List<Computer> computers)
+        {
+            foreach(var item in computers)
+                if (item.MonthsOfWarranty <= 1)
+                    item.Print();
         }
     }
 }
