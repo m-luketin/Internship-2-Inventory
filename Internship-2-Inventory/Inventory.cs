@@ -9,7 +9,7 @@ namespace Internship_2_Inventory
     {
         public Inventory(string description, DateTime dateOfPurchase, int monthsOfWarranty, double priceOfPurchase, string manufacturer)
         {
-            SerialNumber = new Guid();
+            SerialNumber = Guid.NewGuid();
             Description = description;
             DateOfPurchase = dateOfPurchase;
             MonthsOfWarranty = monthsOfWarranty;

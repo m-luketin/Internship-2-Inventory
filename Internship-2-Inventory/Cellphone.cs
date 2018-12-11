@@ -17,5 +17,10 @@ namespace Internship_2_Inventory
         public int PhoneNumber { get; set; }
         public string FirstNameOfOwner { get; set; }
         public string LastNameOfOwner { get; set; }
+
+        public void Print()
+        {
+            Console.WriteLine($"{SerialNumber} {Description} {DateOfPurchase} {MonthsOfWarranty} { PriceOfPurchase} {Manufacturer} {Batteries} {PhoneNumber} {FirstNameOfOwner} {LastNameOfOwner}");
+        }
     }
 }

@@ -15,5 +15,10 @@ namespace Internship_2_Inventory
 
         public DateTime LicenseExpiration { get; set; }
         public int Mileage { get; set; }
+
+        public void Print()
+        {
+            Console.WriteLine($"{SerialNumber} {Description} {DateOfPurchase} {MonthsOfWarranty} { PriceOfPurchase} {Manufacturer} { LicenseExpiration} {Mileage}");
+        }
     }
 }

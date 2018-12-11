@@ -14,6 +14,11 @@ namespace Internship_2_Inventory
         }
 
         public string OperatingSystem { get; set; }
-        public bool Laptop { get; set; }    
+        public bool Laptop { get; set; }
+
+        public void Print()
+        {
+            Console.WriteLine($"{SerialNumber} {Description} {DateOfPurchase} {MonthsOfWarranty} { PriceOfPurchase} {Manufacturer} {Batteries} { OperatingSystem} {Laptop}");
+        }
     }
 }
