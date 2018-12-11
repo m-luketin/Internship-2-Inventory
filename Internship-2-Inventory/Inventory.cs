@@ -7,9 +7,9 @@ namespace Internship_2_Inventory
 {
     class Inventory
     {
-        public Inventory(int serialNumber, string description, DateTime dateOfPurchase, DateTime monthsOfWarranty, decimal priceOfPurchase, string manufacturer)
+        public Inventory(string description, DateTime dateOfPurchase, int monthsOfWarranty, double priceOfPurchase, string manufacturer)
         {
-            SerialNumber = serialNumber;
+            SerialNumber = new Guid();
             Description = description;
             DateOfPurchase = dateOfPurchase;
             MonthsOfWarranty = monthsOfWarranty;
@@ -17,11 +17,11 @@ namespace Internship_2_Inventory
             Manufacturer = manufacturer;
         }
 
-        public int SerialNumber { get; set; }
+        public Guid SerialNumber { get; set; }
         public string Description { get; set; }
         public DateTime DateOfPurchase { get; set; }
-        public DateTime MonthsOfWarranty { get; set; }
-        public decimal PriceOfPurchase { get; set; }
+        public int MonthsOfWarranty { get; set; }
+        public double PriceOfPurchase { get; set; }
         public string Manufacturer { get; set; }
     }
 }

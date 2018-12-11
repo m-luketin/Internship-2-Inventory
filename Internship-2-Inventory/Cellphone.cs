@@ -6,8 +6,8 @@ namespace Internship_2_Inventory
 {
     class Cellphone : TechEquipment
     {
-        public Cellphone(int serialNumber, string description, DateTime dateOfPurchase, DateTime monthsOfWarranty, decimal priceOfPurchase, string manufacturer, bool batteries, int phoneNumber, string firstNameOfOwner, string lastNameOfOwner)
-            : base(serialNumber, description, dateOfPurchase, monthsOfWarranty, priceOfPurchase, manufacturer, batteries)
+        public Cellphone(string description, DateTime dateOfPurchase, int monthsOfWarranty, double priceOfPurchase, string manufacturer, bool batteries, int phoneNumber, string firstNameOfOwner, string lastNameOfOwner)
+            : base(description, dateOfPurchase, monthsOfWarranty, priceOfPurchase, manufacturer, batteries)
         {
             PhoneNumber = phoneNumber;
             FirstNameOfOwner = firstNameOfOwner;

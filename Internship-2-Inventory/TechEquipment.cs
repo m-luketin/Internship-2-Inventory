@@ -6,8 +6,8 @@ namespace Internship_2_Inventory
 {
     class TechEquipment : Inventory
     {
-        public TechEquipment(int serialNumber, string description, DateTime dateOfPurchase, DateTime monthsOfWarranty, decimal priceOfPurchase, string manufacturer, bool batteries)
-            : base(serialNumber, description, dateOfPurchase, monthsOfWarranty, priceOfPurchase, manufacturer)
+        public TechEquipment( string description, DateTime dateOfPurchase, int monthsOfWarranty, double priceOfPurchase, string manufacturer, bool batteries)
+            : base(description, dateOfPurchase, monthsOfWarranty, priceOfPurchase, manufacturer)
         {
             Batteries = batteries;
         }

@@ -6,8 +6,8 @@ namespace Internship_2_Inventory
 {
     class Vehicle : Inventory
     {
-        public Vehicle(int serialNumber, string description, DateTime dateOfPurchase, DateTime monthsOfWarranty, decimal priceOfPurchase, string manufacturer, DateTime licenseExpiration, int mileage)
-            : base(serialNumber, description, dateOfPurchase, monthsOfWarranty, priceOfPurchase, manufacturer)
+        public Vehicle(string description, DateTime dateOfPurchase, int monthsOfWarranty, double priceOfPurchase, string manufacturer, DateTime licenseExpiration, int mileage)
+            : base(description, dateOfPurchase, monthsOfWarranty, priceOfPurchase, manufacturer)
         {
             LicenseExpiration = licenseExpiration;
             Mileage = mileage;
