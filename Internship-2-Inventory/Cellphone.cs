@@ -6,7 +6,7 @@ namespace Internship_2_Inventory
 {
     class Cellphone : TechEquipment
     {
-        public Cellphone(string description, DateTime dateOfPurchase, int monthsOfWarranty, double priceOfPurchase, string manufacturer, bool batteries, int phoneNumber, string firstNameOfOwner, string lastNameOfOwner)
+        public Cellphone(string description, DateTime dateOfPurchase, int monthsOfWarranty, double priceOfPurchase, Maker manufacturer, bool batteries, int phoneNumber, string firstNameOfOwner, string lastNameOfOwner)
             : base(description, dateOfPurchase, monthsOfWarranty, priceOfPurchase, manufacturer, batteries)
         {
             PhoneNumber = phoneNumber;
@@ -23,6 +23,7 @@ namespace Internship_2_Inventory
             Console.WriteLine("ID: " + SerialNumber);
             Console.WriteLine("Description:       " + Description);
             Console.WriteLine("Bought:            " + DateOfPurchase);
+            Console.WriteLine("Warranty(months):  " + MonthsOfWarranty);
             Console.WriteLine("Price:             " + PriceOfPurchase);
             Console.WriteLine("Manufacturer:      " + Manufacturer);
             Console.WriteLine("Batteries:         " + Batteries);

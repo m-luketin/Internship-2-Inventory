@@ -7,7 +7,7 @@ namespace Internship_2_Inventory
 {
     class Inventory
     {
-        public Inventory(string description, DateTime dateOfPurchase, int monthsOfWarranty, double priceOfPurchase, string manufacturer)
+        public Inventory(string description, DateTime dateOfPurchase, int monthsOfWarranty, double priceOfPurchase, Maker manufacturer)
         {
             SerialNumber = Guid.NewGuid();
             Description = description;
@@ -22,6 +22,20 @@ namespace Internship_2_Inventory
         public DateTime DateOfPurchase { get; set; }
         public int MonthsOfWarranty { get; set; }
         public double PriceOfPurchase { get; set; }
-        public string Manufacturer { get; set; }
+        public Maker Manufacturer { get; set; }
+
+    }
+    public enum Maker
+    {
+        Volvo,
+        Audi,
+        Mercedes,
+        Porche,
+        Seat,
+        Asus,
+        Acer,
+        Dell,
+        Xiaomi,
+        Apple
     }
 }
