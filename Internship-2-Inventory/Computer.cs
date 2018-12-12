@@ -18,13 +18,7 @@ namespace Internship_2_Inventory
 
         public void Print()
         {
-            Console.WriteLine("ID: " + SerialNumber);
-            Console.WriteLine("Description:       " + Description);
-            Console.WriteLine("Bought:            " + DateOfPurchase);
-            Console.WriteLine("Warranty(months):  " + MonthsOfWarranty);
-            Console.WriteLine("Price:             " + PriceOfPurchase);
-            Console.WriteLine("Manufacturer:      " + Manufacturer);
-            Console.WriteLine("Batteries:         " + Batteries);
+            base.Print();
             Console.WriteLine("Operating system:  " + OperatingSystem);
             Console.WriteLine("Laptop:            " + Laptop);
             Console.WriteLine();

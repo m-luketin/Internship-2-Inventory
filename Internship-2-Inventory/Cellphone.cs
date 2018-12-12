@@ -20,14 +20,8 @@ namespace Internship_2_Inventory
 
         public void Print()
         {
-            Console.WriteLine("ID: " + SerialNumber);
-            Console.WriteLine("Description:       " + Description);
-            Console.WriteLine("Bought:            " + DateOfPurchase);
-            Console.WriteLine("Warranty(months):  " + MonthsOfWarranty);
-            Console.WriteLine("Price:             " + PriceOfPurchase);
-            Console.WriteLine("Manufacturer:      " + Manufacturer);
-            Console.WriteLine("Batteries:         " + Batteries);
-            Console.WriteLine("Phone number:      " + PhoneNumber);
+            base.Print();
+            Console.WriteLine("Phone number:      0" + PhoneNumber);
             Console.WriteLine("Owner:             " + FirstNameOfOwner + " " + LastNameOfOwner);
             Console.WriteLine();
         }

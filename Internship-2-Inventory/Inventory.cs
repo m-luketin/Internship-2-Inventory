@@ -24,9 +24,29 @@ namespace Internship_2_Inventory
         public double PriceOfPurchase { get; set; }
         public Maker Manufacturer { get; set; }
 
+        public void Print()
+        {
+            Console.WriteLine("ID: " + SerialNumber);
+            Console.WriteLine("Description:       " + Description);
+            Console.WriteLine("Bought:            " + DateOfPurchase);
+            Console.WriteLine("Warranty(months):  " + MonthsOfWarranty);
+            Console.WriteLine("Price:             " + PriceOfPurchase);
+            Console.WriteLine("Manufacturer:      " + Manufacturer);
+        }
     }
     public enum Maker
     {
+        Citroen,
+        Mazda,
+        Fiat,
+        Volkswagen,
+        Ford,
+        BMW,
+        Lexus,
+        Dacia,
+        Lancia,
+        Bugatti,
+        Peugeot,
         Volvo,
         Audi,
         Mercedes,
@@ -36,6 +56,12 @@ namespace Internship_2_Inventory
         Acer,
         Dell,
         Xiaomi,
-        Apple
+        Apple,
+        Huawei,
+        Lenovo,
+        HP,
+        Sony,
+
     }
+
 }

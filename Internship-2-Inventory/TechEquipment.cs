@@ -13,5 +13,11 @@ namespace Internship_2_Inventory
         }
 
         public bool Batteries { get; set; }
+
+        public void Print()
+        {
+            base.Print();
+            Console.WriteLine("Batteries:         " + Batteries);
+        }
     }
 }
