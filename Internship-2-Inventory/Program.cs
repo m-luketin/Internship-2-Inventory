@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace Internship_2_Inventory
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             var computers = new List<Computer>();
             var cellphones = new List<Cellphone>();
@@ -22,7 +22,7 @@ namespace Internship_2_Inventory
             vehicles.Add(new Vehicle("a transport van", new DateTime(2009, 8, 23), 24, 33034.25, "Volkswagen", new DateTime(2019, 8, 24), 250000));
             vehicles.Add(new Vehicle("a premium car", new DateTime(2018, 11, 2), 60, 530345.99, "BMW", new DateTime(2020, 12, 30), 20000));
 
-            var choice = 0;
+            var choice = -1; //int choice?
             do
             {
                 Console.WriteLine(" ___________________________Data_management_____________________________");
@@ -34,18 +34,20 @@ namespace Internship_2_Inventory
                 Console.WriteLine("|6)   Remove vehicle                                                    |");
                 Console.WriteLine("|______________________________Searches_________________________________|");
                 Console.WriteLine("|7)   Search item using serial number                                   |");
-                Console.WriteLine("|8)   Search computers using expiring warranties                        |");
+                Console.WriteLine("|8)   Search computers using warranty expiration                        |");
                 Console.WriteLine("|9)   Search phones using manufacturer                                  |");
                 Console.WriteLine("|10)  Search computers using operating system                           |");
                 Console.WriteLine("|11)  Search owners and numbers of phones using warranty expiration     |");
+                Console.WriteLine("|12)  Search vehicles with expiring licenses                            |");
                 Console.WriteLine("|_______________________________Print___________________________________|");
-                Console.WriteLine("|12)  Print computers                                                   |");
-                Console.WriteLine("|13)  Print cellphones                                                  |");
-                Console.WriteLine("|14)  Print vehicles                                                    |");
-                Console.WriteLine("|15)  Print tech with batteries                                         |");
-                Console.WriteLine("|16)  Print vehicles with expiring registrations                        |");
+                Console.WriteLine("|13)  Print computers                                                   |");
+                Console.WriteLine("|14)  Print cellphones                                                  |");
+                Console.WriteLine("|15)  Print vehicles                                                    |");
+                Console.WriteLine("|16)  Print tech with batteries                                         |");
+                Console.WriteLine("|17)  Print current vehicle values                                      |");
+                Console.WriteLine("|18)  Print current tech values                                         |");
                 Console.WriteLine("|_______________________________________________________________________|");
-                Console.WriteLine("|17)__Exit______________________________________________________________|");
+                Console.WriteLine("Press 0 to exit");
 
                 choice = int.Parse(Console.ReadLine());
 
@@ -53,22 +55,42 @@ namespace Internship_2_Inventory
                     AddComputer(computers);
                 else if (choice == 2)
                     AddCellphone(cellphones);
-                else if(choice == 3)
+                else if (choice == 3)
                     AddVehicle(vehicles);
-                else if(choice == 4)
+                else if (choice == 4)
                     DeleteComputer(computers);
-                else if(choice == 5)
+                else if (choice == 5)
                     DeleteCellphone(cellphones);
-                else if(choice == 6)
+                else if (choice == 6)
                     DeleteVehicle(vehicles);
-                else if(choice == 7)
+                else if (choice == 7)
                     SearchUsingSerial(computers, cellphones, vehicles);
                 else if (choice == 8)
                     SearchExpiringComputers(computers);
-                else
+                else if (choice == 9)
+                    SearchPhonesByManufacturer(cellphones);
+                else if (choice == 10)
+                    SearchComputersByOs(computers);
+                else if (choice == 11)
+                    SearchUsersByWarranty(cellphones);
+                else if (choice == 12)
+                    SearchExpiringVehicles(vehicles);
+                else if (choice == 13)
+                    PrintComputers(computers);
+                else if (choice == 14)
+                    PrintCellphones(cellphones);
+                else if (choice == 15)
+                    PrintVehicles(vehicles);
+                else if (choice == 16)
+                    PrintBatteries(cellphones, computers);
+                else if (choice == 17)
+                    PrintVehicleValues(vehicles);
+                else if (choice == 18)
+                    PrintTechValues(cellphones, computers);
+                else if (choice != 0)
                     Console.WriteLine("Error!");
 
-            } while (choice != 17);
+            } while (choice != 0);
 
         }
 
@@ -99,8 +121,6 @@ namespace Internship_2_Inventory
             var batteries = Console.ReadLine();
             if (batteries == "y")
                 batteryBool = true;
-            else if (batteries == "n")
-                batteryBool = false;
 
             Console.WriteLine("Operating system:");
             var operatingSystem = Console.ReadLine();
@@ -110,8 +130,6 @@ namespace Internship_2_Inventory
             var laptop = Console.ReadLine();
             if (laptop == "y")
                 laptopBool = true;
-            else if (laptop == "n")
-                laptopBool = false;
 
             Computer newComputer = new Computer(computerDescription, dateOfPurchase, monthsOfWarranty, priceOfPurchase, manufacturer, batteryBool, operatingSystem, laptopBool);
             computers.Add(newComputer);
@@ -143,8 +161,6 @@ namespace Internship_2_Inventory
             var batteries = Console.ReadLine();
             if (batteries == "y")
                 batteryBool = true;
-            else if (batteries == "n")
-                batteryBool = false;
 
             Console.WriteLine("Phone number:");
             var operatingSystem = int.Parse(Console.ReadLine());
@@ -185,7 +201,7 @@ namespace Internship_2_Inventory
             var monthOfExpiration = int.Parse(Console.ReadLine());
             Console.WriteLine("Day of registration expiration:");
             var dayOfExpiration = int.Parse(Console.ReadLine());
-            var dateOfExpiration = new DateTime(yearOfPurchase, monthOfPurchase, dayOfPurchase);
+            var dateOfExpiration = new DateTime(yearOfExpiration, monthOfExpiration, dayOfExpiration);
 
 
             Console.WriteLine("Mileage:");
@@ -280,12 +296,156 @@ namespace Internship_2_Inventory
                 if (item.SerialNumber.ToString().Contains(serial))
                     item.Print();
         }
-
         static void SearchExpiringComputers(List<Computer> computers)
         {
-            foreach(var item in computers)
-                if (item.MonthsOfWarranty <= 1)
+            Console.WriteLine("Enter year of expiration:");
+            var year = int.Parse(Console.ReadLine());
+
+            foreach (var item in computers)
+            {
+                var expirationDate = item.DateOfPurchase.AddMonths(item.MonthsOfWarranty);
+                if(expirationDate.Year == year)
                     item.Print();
+            }
+        }
+        static void SearchPhonesByManufacturer(List<Cellphone> cellphones)
+        {
+            Console.WriteLine("Enter the manufacturer:");
+            var manufacturer = Console.ReadLine();
+
+            foreach(var item in cellphones)
+                if (item.Manufacturer == manufacturer)
+                    item.Print();
+        }
+        static void SearchComputersByOs(List<Computer> computers)
+        {
+            Console.WriteLine("Enter the operating system:");
+            var operatingSystem = Console.ReadLine();
+
+            foreach (var item in computers)
+                if (item.OperatingSystem == operatingSystem)
+                    item.Print();
+        }
+        static void SearchUsersByWarranty(List<Cellphone> cellphones)
+        {
+            Console.WriteLine("Enter year of expiration:");
+            var year = int.Parse(Console.ReadLine());
+
+            foreach (var item in cellphones)
+            {
+                var expirationDate = item.DateOfPurchase.AddMonths(item.MonthsOfWarranty);
+                if(expirationDate.Year == year)
+                    item.Print();
+            }
+        }
+        static void SearchExpiringVehicles(List<Vehicle> vehicles)
+        {
+            foreach (var item in vehicles)
+            {
+                var expiration = item.LicenseExpiration - DateTime.Now;
+                if (expiration < new TimeSpan(30, 0, 0, 0))
+                    item.Print();
+            }
+        }
+
+        static void PrintComputers(List<Computer> computers)
+        {
+            foreach(var item in computers)
+                item.Print();
+        }
+        static void PrintCellphones(List<Cellphone> cellphones)
+        {
+            foreach (var item in cellphones)
+                item.Print();
+        }
+        static void PrintVehicles(List<Vehicle> vehicles)
+        {
+            foreach(var item in vehicles)
+                item.Print();
+        }
+
+        static void PrintBatteries(List<Cellphone> cellphones, List<Computer> computers)
+        {
+            foreach (var item in cellphones)
+                if (item.Batteries)
+                    item.Print();
+            foreach (var item in computers)
+                if(item.Batteries)
+                    item.Print();
+        }
+
+        static void PrintVehicleValues(List<Vehicle> vehicles)
+        {
+            
+            foreach (var item in vehicles)
+            {
+                var currentValue = item.PriceOfPurchase;
+                var limit = 0.2 * currentValue;
+                var n = item.Mileage / 20000;
+
+                for (var i = 0; i < n; i++)
+                    currentValue = currentValue - (currentValue * 0.1);
+                Console.WriteLine("ID: " + item.SerialNumber);
+                Console.WriteLine("Purchase price: " + item.PriceOfPurchase);
+                if (currentValue < limit)
+                {
+                    Console.WriteLine("Current value: " + limit);
+                    Console.WriteLine("Difference: " + (item.PriceOfPurchase - limit));
+                }
+                else
+                {
+                    Console.WriteLine("Current value: " + currentValue);
+                    Console.WriteLine("Difference: " + (item.PriceOfPurchase - currentValue));
+                }
+            }
+        }
+
+        static void PrintTechValues(List<Cellphone> cellphones, List<Computer> computers)
+        {
+            foreach (var item in cellphones)
+            {
+                var currentValue = item.PriceOfPurchase;
+                var limit = 0.3 * currentValue;
+                var n = (DateTime.Now - item.DateOfPurchase).Days / 30;
+
+                for (var i = 0; i < n; i++)
+                    currentValue = currentValue - (currentValue * 0.05);
+
+                Console.WriteLine("ID: " + item.SerialNumber);
+                Console.WriteLine("Purchase price: " + item.PriceOfPurchase);
+                if (currentValue < limit)
+                {
+                    Console.WriteLine("Current value: " + limit);
+                    Console.WriteLine("Difference: " + (item.PriceOfPurchase - limit));
+                }
+                else
+                {
+                    Console.WriteLine("Current value: " + currentValue);
+                    Console.WriteLine("Difference: " + (item.PriceOfPurchase - currentValue));
+                }
+            }
+            foreach (var item in computers)
+            {
+                var currentValue = item.PriceOfPurchase;
+                var limit = 0.3 * currentValue;
+                var n = (DateTime.Now - item.DateOfPurchase).Days / 30;
+
+                for (var i = 0; i < n; i++)
+                    currentValue = currentValue - (currentValue * 0.05);
+
+                Console.WriteLine("ID: " + item.SerialNumber);
+                Console.WriteLine("Purchase price: " + item.PriceOfPurchase);
+                if (currentValue < limit)
+                {
+                    Console.WriteLine("Current value: " + limit);
+                    Console.WriteLine("Difference: " + (item.PriceOfPurchase - limit));
+                }
+                else
+                {
+                    Console.WriteLine("Current value: " + currentValue);
+                    Console.WriteLine("Difference: " + (item.PriceOfPurchase - currentValue));
+                }
+            }
         }
     }
 }
