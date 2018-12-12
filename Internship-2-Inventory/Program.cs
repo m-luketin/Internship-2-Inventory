@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 
 namespace Internship_2_Inventory
 {
@@ -16,7 +15,7 @@ namespace Internship_2_Inventory
             computers.Add(new Computer("a low-quality laptop", new DateTime(2017, 3, 9), 3, 2199.99, "Asus", true, "Linux", true));
             computers.Add(new Computer("an average pc", new DateTime(2016, 2, 23), 1, 3179.95, "Acer", false, "Linux", false));
             cellphones.Add(new Cellphone("an average cellphone", new DateTime(2018, 3, 4), 5, 2200.11, "Xiaomi", true, 0976086801, "Mark", "Jones"));
-            cellphones.Add(new Cellphone("a premium cellphone", new DateTime(2018, 11, 23), 12, 2200.11, "Apple", true, 0912221122, "John", "Evans"));
+            cellphones.Add(new Cellphone("a premium cellphone", new DateTime(2018, 11, 10), 12, 5782.11, "Apple", true, 0912221122, "John", "Evans"));
             vehicles.Add(new Vehicle("a reliable car", new DateTime(2011, 3, 29), 36, 47000.99, "Volvo", new DateTime(2019, 3, 14), 230000));
             vehicles.Add(new Vehicle("a barely drivable car", new DateTime(2002, 3, 20), 0, 8300.95, "Seat", new DateTime(2018, 12, 14), 999000));
             vehicles.Add(new Vehicle("a transport van", new DateTime(2009, 8, 23), 24, 33034.25, "Volkswagen", new DateTime(2019, 8, 24), 250000));
@@ -405,46 +404,50 @@ namespace Internship_2_Inventory
             foreach (var item in cellphones)
             {
                 var currentValue = item.PriceOfPurchase;
-                var limit = 0.3 * currentValue;
+                var limit = 0.3 * item.PriceOfPurchase;
                 var n = (DateTime.Now - item.DateOfPurchase).Days / 30;
 
                 for (var i = 0; i < n; i++)
                     currentValue = currentValue - (currentValue * 0.05);
 
                 Console.WriteLine("ID: " + item.SerialNumber);
-                Console.WriteLine("Purchase price: " + item.PriceOfPurchase);
+                Console.WriteLine("Purchase price:   " + item.PriceOfPurchase);
                 if (currentValue < limit)
                 {
-                    Console.WriteLine("Current value: " + limit);
-                    Console.WriteLine("Difference: " + (item.PriceOfPurchase - limit));
+                    Console.WriteLine("Current value:      " + limit);
+                    Console.WriteLine("Difference:         " + (item.PriceOfPurchase - limit));
                 }
                 else
                 {
-                    Console.WriteLine("Current value: " + currentValue);
-                    Console.WriteLine("Difference: " + (item.PriceOfPurchase - currentValue));
+                    Console.WriteLine("Current value:    " + currentValue);
+                    Console.WriteLine("Difference:       " + (item.PriceOfPurchase - currentValue));
                 }
+
+                Console.WriteLine();
             }
             foreach (var item in computers)
             {
                 var currentValue = item.PriceOfPurchase;
-                var limit = 0.3 * currentValue;
+                var limit = 0.3 * item.PriceOfPurchase;
                 var n = (DateTime.Now - item.DateOfPurchase).Days / 30;
 
                 for (var i = 0; i < n; i++)
                     currentValue = currentValue - (currentValue * 0.05);
 
                 Console.WriteLine("ID: " + item.SerialNumber);
-                Console.WriteLine("Purchase price: " + item.PriceOfPurchase);
+                Console.WriteLine("Purchase price:   " + item.PriceOfPurchase);
                 if (currentValue < limit)
                 {
-                    Console.WriteLine("Current value: " + limit);
-                    Console.WriteLine("Difference: " + (item.PriceOfPurchase - limit));
+                    Console.WriteLine("Current value:      " + limit);
+                    Console.WriteLine("Difference:         " + (item.PriceOfPurchase - limit));
                 }
                 else
                 {
-                    Console.WriteLine("Current value: " + currentValue);
-                    Console.WriteLine("Difference: " + (item.PriceOfPurchase - currentValue));
+                    Console.WriteLine("Current value:    " + currentValue);
+                    Console.WriteLine("Difference:       " + (item.PriceOfPurchase - currentValue));
                 }
+
+                Console.WriteLine();
             }
         }
     }

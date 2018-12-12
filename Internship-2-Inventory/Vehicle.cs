@@ -18,7 +18,14 @@ namespace Internship_2_Inventory
 
         public void Print()
         {
-            Console.WriteLine($"{SerialNumber} {Description} {DateOfPurchase} {MonthsOfWarranty} { PriceOfPurchase} {Manufacturer} { LicenseExpiration} {Mileage}");
+            Console.WriteLine("ID: " + SerialNumber);
+            Console.WriteLine("Description:       " + Description);
+            Console.WriteLine("Bought:            " + DateOfPurchase);
+            Console.WriteLine("Price:             " + PriceOfPurchase);
+            Console.WriteLine("Manufacturer:      " + Manufacturer);
+            Console.WriteLine("License expires:   " + LicenseExpiration);
+            Console.WriteLine("Mileage:           " + Mileage);
+            Console.WriteLine();
         }
     }
 }
